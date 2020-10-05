@@ -3,7 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/InputComponent.h"
+#include "Camera/CameraComponent.h"
 #include "GameFramework/Character.h"
+#include "GameFramework/CharacterMovementComponent.h"
 #include "FPCharacter.generated.h"
 
 UCLASS()
@@ -26,4 +29,21 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+private:
+	void HorizontalMovement(float value);
+	void VerticalMovement(float value);
+
+	void HorizontalRotation(float value);
+	void VerticalRotation(float value);
+
+	void StartRun();
+	void StopRun();
+
+	UPROPERTY(EditAnywhere, Category = "Camera")
+		UCameraComponent* camera;
+
+	UCharacterMovementComponent* MovementPtr;
+
+	float runSpeed = 900.0f;
+	float walkSpeed = 600.0f;
 };
